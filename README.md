@@ -20,8 +20,6 @@ The diagnosis of pneumonia from chest X-rays is difficult for several reasons:
 2. Pneumonia often overlaps with other diagnoses
 3. Pneumonia can mimic benign abnormalities
 
-<< add some examples here from NIH images >>
-
 For these reasons, common methods of diagnostic validation performed in the clinical setting are to obtain sputum cultures to test for the presence of bacteria or viral bodies that cause pneumonia, reading the patient's clinical history and taking their demographic profile into account, and comparing a current image to prior chest X-rays for the same patient if they are available. 
 
 ## About the Dataset
