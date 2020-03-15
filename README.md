@@ -26,11 +26,26 @@ For these reasons, common methods of diagnostic validation performed in the clin
 
 The dataset provided to you for this project was curated by the NIH specifically to address the problem of a lack of large x-ray datasets with ground truth labels to be used in the creation of disease detection algorithms. 
 
-This NIH Chest X-ray Dataset is comprised of 112,120 X-ray images with disease labels from 30,805 unique patients.  To create these labels, the authors used Natural Language Processing to text-mine disease classifications from the associated radiological reports. This text-mining was performed for 14 common thoracic pathologies that include: Atelectasis, Consolidation, Infiltration,
-Pneumothorax, Edema, Emphysema, Fibrosis, Effusion, Pneumonia, Pleural_thickening,
-Cardiomegaly, Nodule, Mass and Hernia. The labels are expected to be >90% accurate and suitable for weakly-supervised learning. The original radiology reports are not publicly available but you can find more details on the labeling process in this Open Access paper: "ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases." (Wang et al.)
+There are 112,120 X-ray images with disease labels from 30,805 unique patients in this dataset.  The disease labels were created using Natural Language Processing (NLP) to mine the associated radiological reports. The labels include 14 common thoracic pathologies: 
+- Atelectasis 
+- Consolidation
+- Infiltration
+- Pneumothorax
+- Edema
+- Emphysema
+- Fibrosis
+- Effusion
+- Pneumonia
+- Pleural thickening
+- Cardiomegaly
+- Nodule
+- Mass
+- Hernia 
 
 The biggest limitation of this dataset is that image labels were NLP-extracted so there could be some erroneous labels but the NLP labeling accuracy is estimated to be >90%.
+
+The original radiology reports are not publicly available but you can find more details on the labeling process [here.](https://arxiv.org/abs/1705.02315) 
+
 
 ### Dataset Contents: 
 
@@ -49,14 +64,14 @@ The first part of this project will involve exploratory data analysis (EDA) to u
 Note that much of the work performed during your EDA will enable the completion of the final component of this project which is focused on documentation of your algorithm for the FDA. This is described in a later section, but some important things to focus on during your EDA may be: 
 
 * The patient demographic data (as it is available)
-* The radiologic techniques used and views taken
+* The x-ray views taken (i.e. view position)
 * The number of cases including: 
     * number of diseased cases,
     * number of normal cases
-* The case distributions stratified by relevant confounders or effect modifiers, such as comorbid conditions
+* The distribution of other diseases that are comorbid with pneumonia
 * Number of cases per patient 
     * Also assessing development of pneumonia over time
-* Pixel-level assessments of the quality of the imaging data for healthy & disease states of interest
+* Pixel-level assessments of the imaging data for healthy & disease states of interest (e.g. histograms of intensity values)
 
 ### 2. Building and Training Your Model
 
@@ -110,7 +125,7 @@ As the data scientist who built the classification model that will be submitted 
 For this project, you will complete the following steps that are derived from the FDA's official guidance on both the algorithm description and the algorithm performance assessment. __*Much of this portion of the project relies on what you did during your EDA, model building, and model training. Use figures and statistics from those earlier parts in completing the following documentation.*__
 
 #### Algorithm Description
-In several pages, provide a description of your model that covers the following: 
+Provide a description of your model that covers the following: 
 
 **1. General Information:**
 * Target population that your device is intended for, including patient population organs of interest, diseases/conditions/abnormalities of interest, appropriate clinical intended to use the device (e.g. radiologist, family practice physician, nurse), and imaging modality to be used as input to your model
