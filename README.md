@@ -185,7 +185,7 @@ The methodology used to establish the reference standard can impact reported per
 * A follow-up medical examination other than imaging
 * An interpretation by reviewing clinician(s)
 
-#### Algorithm Performance Assessment
+**6. Algorithm Performance Assessment
 
 While recommended for real-world FDA submissions,you will simply _describe_ how a standalone performance assessment would be conducted for your algorithm, rather than actually performing the assessment. This assessment helps the FDA and future users of your device to understand how well your device, by itself, identifies disease in the absense of any interaction with a clinician. Study endpoints should be selected to establish a meaningful and statistically relevant performance for the device. 
 
