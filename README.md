@@ -59,28 +59,27 @@ Pixel Spacing.
 
 ### 1. Exploratory Data Analysis
 
-The first part of this project will involve exploratory data analysis (EDA) to understand and describe the content and nature of the data. Using the output of this EDA along with contextual information about the dataset, general information about x-rays, and the clinical diagnosis of pneumonia you will curate the appropriate training and testing sets for building a pneumonia detection model. 
+The first part of this project will involve exploratory data analysis (EDA) to understand and describe the content and nature of the data.
 
 Note that much of the work performed during your EDA will enable the completion of the final component of this project which is focused on documentation of your algorithm for the FDA. This is described in a later section, but some important things to focus on during your EDA may be: 
 
 * The patient demographic data (as it is available)
 * The x-ray views taken (i.e. view position)
 * The number of cases including: 
-    * number of diseased cases,
-    * number of normal cases
+    * number of pneumonia cases,
+    * number of non-pneumonia cases
 * The distribution of other diseases that are comorbid with pneumonia
-* Number of cases per patient 
-    * Also assessing development of pneumonia over time
+* Number of disease per patient 
 * Pixel-level assessments of the imaging data for healthy & disease states of interest (e.g. histograms of intensity values)
 
 ### 2. Building and Training Your Model
 
-**Training and Testing Datasets**
+**Training and validating Datasets**
 
-From your findings in the EDA component of this project, curate the appropriate training and testing sets for classifying pneumonia. Be sure to take the following into consideration: 
+From your findings in the EDA component of this project, curate the appropriate training and validation sets for classifying pneumonia. Be sure to take the following into consideration: 
 
 * Distribution of diseases other than pneumonia that are present in both datasets
-* Patient make-up of training and testing sets, including demographic information, image view positions, and number of images per patient in each set
+* Demographic information, image view positions, and number of images per patient in each set
 * Distribution of pneumonia-positive and pneumonia-negative cases in each dataset
 
 **Model Architecture**
@@ -90,7 +89,7 @@ In this project, you will fine-tune an existing CNN architecture to classify x-r
 
 **Image Pre-Processing and Augmentation** 
 
-You may choose or need to do some amount of  preprocessing prior to feeding imagees into your network for training and testing. This may  serve the purpose of conforming to your model's architecture and/or for the purposes of augmenting your training dataset for increasing your model performance. When performing image augmentation, be sure to think about augmentation parameters that reflect real-world differences that may be seen in chest X-rays. 
+You may choose or need to do some amount of preprocessing prior to feeding imagees into your network for training and validating. This may serve the purpose of conforming to your model's architecture and/or for the purposes of augmenting your training dataset for increasing your model performance. When performing image augmentation, be sure to think about augmentation parameters that reflect real-world differences that may be seen in chest X-rays. 
 
 **Training** 
 
@@ -104,7 +103,7 @@ You will be asked to provide descriptions of the methods by which given paramete
 
  **Performance Assessment**
 
- As you train your model, you will monitor its performance over subsequence training epochs. Choose the appropriate metrics upon which to monitor test set performance. Note that 'accuracy' may not be the most appropriate statistic in this case, depending on the balance or imbalance of your validation dataset, and also depending on the clinical context that you want to use this model in (i.e. can you sacrafice high false positive rate for a low false negative rate?)
+As you train your model, you will monitor its performance over subsequence training epochs. Choose the appropriate metrics upon which to monitor performance. Note that 'accuracy' may not be the most appropriate statistic in this case, depending on the balance or imbalance of your validation dataset, and also depending on the clinical context that you want to use this model in (i.e. can you sacrafice high false positive rate for a low false negative rate?)
 
  __Note that detecting pneumonia is *hard* even for trained expert radiologists, so you should *not* expect to acheive sky-high performance.__ [This paper](https://arxiv.org/pdf/1711.05225.pdf) describes some human-reader-level F1 scores for detecting pneumonia, and can be used as a reference point for how well your model could perform.
 
@@ -118,76 +117,77 @@ For this project, create a DICOM wrapper that takes in a standard DICOM file and
 * Proper body part in acquisition
 
 
-### 4. FDA Preparation
-
-As the data scientist who built the classification model that will be submitted to the FDA, you will likely be responsible for two key aspects of the FDA submission process: writing an in-depth description of your algorithm and how it was trained, and writing an in-depth description of how your algorithm's performance was assessed. These two components of the submission process are described in the FDA's official documentation in sections 4 & 5 of [this document.](https://www.fda.gov/media/77635/download) 
+### 4. FDA  Submission
 
 For this project, you will complete the following steps that are derived from the FDA's official guidance on both the algorithm description and the algorithm performance assessment. __*Much of this portion of the project relies on what you did during your EDA, model building, and model training. Use figures and statistics from those earlier parts in completing the following documentation.*__
 
-#### Algorithm Description
-Provide a description of your model that covers the following: 
-
 **1. General Information:**
-* Target population that your device is intended for, including patient population organs of interest, diseases/conditions/abnormalities of interest, appropriate clinical intended to use the device (e.g. radiologist, family practice physician, nurse), and imaging modality to be used as input to your model
-* Current clinical practice relevant to the diseases/conditions/abnormalities of interest
-* Proposed clinical workflow including a descirption of: 
-    * how your device is labeled for use in clinical practice,
-    * when your device should be utilized within the proposed workflow
-    * effects on interpretation time when specific claims are mae
-* Device impact, including: 
-    * the impact on the patient associated with device performance for both true positive and true negative marks, and
-    * the impact on the patient associated with device performance for false positive and false negative marks, separately (e.g. an incorrect follow-up recommendation based on a false positive detection would likely result in short term surveillance imaging for the patient) 
+
+* First, provide an Intended Use statement for your model 
+* Then, provide some indications for use that should include: 
+    * Target population
+    * When your device could be utilized within a clinical workflow
 * Device limitations, including diseases/conditions/abnormalities for which the device has been found ineffective and should not be used
-* Supporting data from the scientific literature
+* Explain how a false positive or false negative might impact a patient
 
 **2. Algorithm Design and Function**
 
-Include a flowchart identifying the processing, features, models, and classifiers utilized by your algorithm. The flowchart should include the following: 
+In this section, describe your _fully trained_ algorithm and the DICOM header checks that you have built around it. Include a flowchart that describes the following: 
 
-* Any preprocessing steps performed by your algorithm on the original images
+* Any pre-algorithm checks you perform on your DICOM
+* Any preprocessing steps performed by your algorithm on the original images (e.g. normalization)
+    * Note that this section should _not_ include augmentation
 * The architecture of the classifier
-* Any post-processing performed after classification to bring the output into a clinical environment
 
-For each stage of your algorithm, briefly describe the design and function. You can provide references to published studies if your technique is similar, and your description should include a discussion of: 
 
-* Purpose of the stage
-* Processing steps
-* Features (if any)
-* Models and classifiers
-* Training paradigm
-* Development and training databases utilized
+For each stage of your algorithm, briefly describe the design and function.
 
 **3. Algorithm Training**
 
-Algorithm training is procedure used to establish algorithm parameters and thresholds. This procedure includes the adjustment of filter parameters, the selection of the most discriminant features, and the adjustment of classifier weight and model parameters. 
+Describe the following parameters of your algorithm and how they were chosen: 
 
-Describe the criteria and performance metrics used to determine parameter settings and provide a summary of the incremental algorithm performance for appropriate intermediate stages of the algorithm. 
+* Types of augmentation used during training
+* Batch size
+* Optimizer learning rate
+* Layers of pre-existing architecture that were frozen
+* Layers of pre-existing architecture that were fine-tuned
+* Layers added to pre-existing architecture
+
+Also describe the behavior of the following throughout training (use visuals to show):
+
+* Training loss
+* Validation loss 
+
+Describe the algorithm's final performance after training was complete by showing a precision-recall curve on your validation set.
+
+Finally, report the threshold for classification that you chose and the corresponded F1 score, recall, and precision. Give one or two sentences of explanation for why you chose this threshold value. 
 
 **4. Databases**
 
-For the database of patient data used in training and testing your algorithm, provide specific information including: 
+For the database of patient data used, provide specific information about the training and validation datasets that you curated separately, including: 
 
+* Size of the dataset
+* The number of positive cases and the its radio to the number of negative cases
 * The patient demographic data (as it is available)
 * The radiologic techniques used and views taken
-* The number of cases including: 
-    * number of diseased cases,
-    * number of normal cases
-* The case distributions stratified by relevant confounders or effect modifiers, such as comorbid conditions
+* The co-occurrence frequencies of pneumonia with other diseases and findings
 
-**5. Reference Standard**
+**5. Ground Truth**
 
-The reference standard (also often called the "gold standard" or "ground truth" in the imaging community) for patient data indicates whether or not the disease is present and may include such attributes as the extent or location of the disease. 
+The methodology used to establish the ground truth can impact reported performance. Describe how the NIH created the ground truth for the data that was provided to you for this project. Describe the benefits and limitations of this type of ground truth.  
 
-The methodology used to establish the reference standard can impact reported performance. You should provide the rationale and describe the procedure for defining if a disease is prersent. Indiate if the reference standard is based on: 
-* The output from another device
-* An established clinical determination (e.g. biopsy, specific laboratory test)
-* A follow-up clinical imaging examination
-* A follow-up medical examination other than imaging
-* An interpretation by reviewing clinician(s)
+**6. FDA Validation Plan**
 
-**6. Algorithm Performance Assessment**
+You will simply _describe_ how a FDA Validation Plan would be conducted for your algorithm, rather than actually performing the assessment. Describe the following: 
 
-While recommended for real-world FDA submissions,you will simply _describe_ how a standalone performance assessment would be conducted for your algorithm, rather than actually performing the assessment. This assessment helps the FDA and future users of your device to understand how well your device, by itself, identifies disease in the absense of any interaction with a clinician. Study endpoints should be selected to establish a meaningful and statistically relevant performance for the device. 
+* The patient population that you would request imaging data from from your clinical partner. Make sure to include: 
+    * Age ranges
+    * Sex
+    * Type of imaging modality
+    * Body part imaged
+    * Prevalence of disease of interest
+    * Any other diseases that should be included _or_ excluded as comorbidities in the population
 
-For this part of the project, you'll need to describe how you would create a reference dataset for external validation of your model in an ideal scenario. This means that you should describe the _most accurate_ way that you would create ground truth labels for this external set, and what you would compare your model's performance to. Describe what statistics you would use to evaluate performance and deem it on par with either human performance or another algorithm or tool that's out there in the real world. One helpful resource may be [this paper.](https://arxiv.org/pdf/1711.05225.pdf)
+* Provide a short explanation of how you would obtain an optimal ground truth 
+* Provide a performance standard that you choose based on [this paper.](https://arxiv.org/pdf/1711.05225.pdf)
 
