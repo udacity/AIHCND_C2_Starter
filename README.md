@@ -26,6 +26,8 @@ For these reasons, common methods of diagnostic validation performed in the clin
 
 The dataset provided to you for this project was curated by the NIH specifically to address the problem of a lack of large x-ray datasets with ground truth labels to be used in the creation of disease detection algorithms. 
 
+The data is mounted in the Udacity Jupyter GPU workspace provided to you, and it will be automatically loaded when you run the code. Alternatively, you can download the data from the [kaggle website](https://www.kaggle.com/nih-chest-xrays/data) and run it locally. You are recommended to complete the project using the Udacity workspace since the data is huge, and you will need GPU to accelerate the training process.
+
 There are 112,120 X-ray images with disease labels from 30,805 unique patients in this dataset.  The disease labels were created using Natural Language Processing (NLP) to mine the associated radiological reports. The labels include 14 common thoracic pathologies: 
 - Atelectasis 
 - Consolidation
