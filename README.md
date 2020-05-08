@@ -65,7 +65,7 @@ The first part of this project will involve exploratory data analysis (EDA) to u
 
 Note that much of the work performed during your EDA will enable the completion of the final component of this project which is focused on documentation of your algorithm for the FDA. This is described in a later section, but some important things to focus on during your EDA may be: 
 
-* The patient demographic data (as it is available)
+* The patient demographic data such as gender, age, patient position,etc. (as it is available)
 * The x-ray views taken (i.e. view position)
 * The number of cases including: 
     * number of pneumonia cases,
