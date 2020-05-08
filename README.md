@@ -72,7 +72,7 @@ Note that much of the work performed during your EDA will enable the completion 
     * number of non-pneumonia cases
 * The distribution of other diseases that are comorbid with pneumonia
 * Number of disease per patient 
-* Pixel-level assessments of the imaging data for healthy & disease states of interest (e.g. histograms of intensity values)
+* Pixel-level assessments of the imaging data for healthy & disease states of interest (e.g. histograms of intensity values) and compare distributions across diseases.
 
 ### 2. Building and Training Your Model
 
